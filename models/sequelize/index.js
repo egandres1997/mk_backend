@@ -1,6 +1,7 @@
 'use strict'
 
 const env = require('dotenv').config()
+const config = require('../../config')
 
 const fs        = require('fs')
 const path      = require('path')
@@ -8,16 +9,11 @@ const Sequelize = require('sequelize')
 const basename  = path.basename(module.filename)
 const db        = {}
 
-const config    = {
+const data = {
   operatorsAliases: Sequelize.Op
 }
 
-let sequelize
-if (config.use_env_variable) {
-  sequelize= new Sequelize(process.env[config.use_env_variable])
-} else {
-  sequelize = new Sequelize(process.env.DB_CONNECTION, config)
-}
+let sequelize = new Sequelize(config[process.env.NODE_ENV].db_connection, data)
 
 fs
   .readdirSync(__dirname)
@@ -36,7 +32,6 @@ Object.keys(db).forEach(function(modelName) {
   }
 })
 
-db.sequelize = sequelize
 db.Sequelize = Sequelize
 
 module.exports = db

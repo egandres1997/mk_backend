@@ -6,8 +6,10 @@ const app = express()
 const server = http.createServer(app)
 const cors = require('cors')
 const apiVersionV1 = require('./routes/v1/api_v1')
-const config = require('./config')
 const bodyParser = require('body-parser')
+
+const env = require('dotenv').config()
+const config = require('./config')[process.env.NODE_ENV]
 const port = config.port
 
 app.use(cors())
@@ -17,15 +19,17 @@ app.use(bodyParser.json())
 
 app.use('/v1', apiVersionV1)
 
-const handleFatalError = (err) => {
-  console.error('Fatal error' + err.message)
-  console.error(err.stack)
-
-  process.exit(1)
-}
-
-process.on('uncaughtException', handleFatalError)
-process.on('unhandleRejection', handleFatalError)
+app.use(function (err, req, res, next) {
+  res.locals.message = err.message
+  res.locals.error = req
+    .app
+    .get('env') === 'development'
+    ? err
+    : {}
+  res
+    .status(err.status || 500)
+    .send(responser.createResponse(err.status || 500, err.message,null))
+})
 
 server.listen(port, () => {
   console.log('Server listening on port ' + port)

@@ -1,50 +1,32 @@
 'use strict'
-var bcrypt = require('bcrypt')
-var Sequelize = require('sequelize')
+const bcrypt = require('bcrypt')
+const Sequelize = require('sequelize')
 
 module.exports = function (sequelize) {
-  var User = sequelize.define('User', {
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      isUnique: true,
-      validate: {
-        isEmail: true,
-        notEmpty: true,
-        len: [
-          1, 255
-        ],
-        isUnique: function (value, next) {
-          var self = this
-          User
-            .find({
-              where: {
-                email: value
-              }
-            })
-            .then(function (user) {
-              if (user && self.id !== user.id) {
-                return next('Email already in use')
-              }
-              return next()
-            })
-            .catch(function (err) {
-              return next(err)
-            })
-        }
-      }
+  const User = sequelize.define('User', {
+    name: {
+      type: Sequelize.STRING(191),
+      allowNull: false
     },
-    fullname: Sequelize.STRING,
+    email: {
+      type: Sequelize.STRING(191),
+      allowNull: false
+    },
     password: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(191),
+      allowNull: false,
       validate: {
         notEmpty: true
       }
-    }
+    },
+    remember_token: {
+      type: Sequelize.STRING(100),
+      allowNull: false
+    },
   }, {
     timestamps: true,
+    tableName: 'users',
     underscored: true,
-    tableName: 'user',
     indexes: [
       {
         unique: true,
@@ -53,32 +35,17 @@ module.exports = function (sequelize) {
     ]
   })
 
-  // Adding a class level method
   User.associate = function (models) {
-    // User.belongsToMany(models.Role, {
-    //   as: 'Roles',
-    //   through: {
-    //     model: models.UserRole
-    //   },
-    //   foreignKey: {
-    //     name: 'user_id',
-    //     allowNull: true,
-    //     unique: true
-    //   }
-    // })
-
-    // User.belongsToMany(models.Course, {
-    //   as: 'Teaches',
-    //   through: {
-    //     model: models.CourseTeacher
-    //   },
-    //   foreignKey: {
-    //     name: 'user_id',
-    //     allowNull: true,
-    //     unique: true
-    //   }
-    // })
-    // User.hasMany(models.Enrolment)
+    User.belongsToMany(models.Role, {
+      as: 'Roles',
+      through: {
+        model: models.ModelHasRole
+      },
+      foreignKey: {
+        name: 'model_id',
+        allowNull: false
+      }
+    })
   }
 
   User.beforeCreate((user, options) => {
@@ -98,7 +65,7 @@ module.exports = function (sequelize) {
   })
 
   User.prototype.verifyPassword = function (password) {
-    var current_password = this.password
+    const current_password = this.password
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, current_password, (err, isMatch) => {
         if (err) 
