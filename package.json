@@ -1,7 +1,7 @@
 {
-  "name": "ad_house_api",
+  "name": "mk_backend",
   "version": "1.0.0",
-  "description": "Simple platform for Digital House",
+  "description": "MK Backend",
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server.js",
@@ -24,9 +24,10 @@
     "cors": "^2.8.4",
     "dotenv": "^6.1.0",
     "express": "4.9.0",
-    "express-jwt": "^5.3.1",
+    "express-validator": "^5.3.0",
     "file-system": "^2.2.2",
     "jsonwebtoken": "^8.3.0",
+    "jwt-simple": "^0.5.5",
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
