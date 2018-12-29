@@ -20,7 +20,6 @@ module.exports = function (sequelize) {
 
   Role.associate = function (models) {
     Role.belongsToMany(models.User, {
-      as: 'Users',
       through: {
         model: models.ModelHasRole
       },

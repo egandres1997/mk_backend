@@ -7,6 +7,7 @@ const server = http.createServer(app)
 const cors = require('cors')
 const apiVersionV1 = require('./routes/v1/api_v1')
 const bodyParser = require('body-parser')
+const responser = require('./utils/responser')
 
 const env = require('dotenv').config()
 const config = require('./config')[process.env.NODE_ENV]
@@ -28,7 +29,7 @@ app.use(function (err, req, res, next) {
     : {}
   res
     .status(err.status || 500)
-    .send(responser.createResponse(err.status || 500, err.message,null))
+    .send(responser.createResponse(err.status || 500, err.message, null))
 })
 
 server.listen(port, () => {

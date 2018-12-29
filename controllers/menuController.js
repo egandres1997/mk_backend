@@ -1,11 +1,11 @@
 const models = require('../models/sequelize')
-const userService = require('../services/userService')(models)
+const menuService = require('../services/menuService')(models)
 const responser = require('../utils/responser')
 
 const list = async function (req, res) {
-  let users = await userService.findAll(req.query)
+  let menus = await menuService.findAll(req.query)
   res.statusCode = responser.codes.OK
-  res.json(responser.createSuccessResponse(res.statusCode, users))
+  res.json(responser.createSuccessResponse(res.statusCode, menus))
 }
 
 module.exports = {
