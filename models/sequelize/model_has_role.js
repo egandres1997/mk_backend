@@ -23,8 +23,7 @@ module.exports = function (sequelize) {
   })
 
   ModelHasRole.associate = function (models) {
-    ModelHasRole.belongsTo(models.User)
-    ModelHasRole.belongsTo(models.Role)
+    
   }
 
   ModelHasRole.getMsgNotExists = function () {

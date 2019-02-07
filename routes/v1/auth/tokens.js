@@ -14,7 +14,6 @@ const {
   validationResult
 } = require('express-validator/check')
 
-
 let createToken = (id, username, permissions, name) => {
   let payload = {
     user_id: id,
@@ -47,20 +46,20 @@ router.post('/', [
   let email = req.body.email
   let password = req.body.password
   models.User.findOne({
-
     where: {
       email: email
     },
-    include: [{
-      model: models.Role,
-      as: 'Roles',
-      include: [{
-        model: models.Permission,
-        as: 'Permissions'
-      }]
-    }
+    include: [
+      {
+        model: models.Role,
+        include: [
+          {
+            model: models.Permission,
+            as: 'Permissions'
+          }
+        ]
+      }
     ]
-
   }).then(oneUser => {
     if (oneUser === null) {
       return res.status(responser.codes.UNPROCESSABLE_ENTITY).json(

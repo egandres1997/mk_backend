@@ -8,7 +8,7 @@ module.exports = function (sequelize) {
       type: Sequelize.STRING(191),
       allowNull: false
     },
-    guard_name: {
+    module: {
       type: Sequelize.STRING(191),
       allowNull: false
     }

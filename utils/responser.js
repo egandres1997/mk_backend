@@ -1,20 +1,20 @@
 'use strict'
 
-const createResponse = (code, message,data) => {
+const createResponse = (code, message, data) => {
   let status = (code >= 500)
     ? this.status.FAIL
     : this.status.ERROR
-  return {code, status, message, data}
+  return { code, status, message, data }
 }
-const createErrorResponse = (code, message,data) => {
-  return {code, status:code, message, data}
+const createErrorResponse = (code, message, data) => {
+  return { code, status: code, message, data }
 }
 const createSuccessResponse = (code, data) => {
-  return {code, status: this.status.SUCCESS, message: '', data}
+  return { code, status: this.status.SUCCESS, message: '', data }
 }
 
-const createSuccessResponseWithPagination = (code, data,pagination) => {
-  return {code, status: this.status.SUCCESS, message: '', data,pagination}
+const createSuccessResponseWithPagination = (code, data, pagination) => {
+  return { code, status: this.status.SUCCESS, message: '', data, pagination }
 }
 
 const status = {

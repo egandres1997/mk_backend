@@ -22,7 +22,7 @@ module.exports = function (sequelize) {
     remember_token: {
       type: Sequelize.STRING(100),
       allowNull: false
-    },
+    }
   }, {
     timestamps: true,
     tableName: 'users',
@@ -37,7 +37,6 @@ module.exports = function (sequelize) {
 
   User.associate = function (models) {
     User.belongsToMany(models.Role, {
-      as: 'Roles',
       through: {
         model: models.ModelHasRole
       },
@@ -68,10 +67,8 @@ module.exports = function (sequelize) {
     const current_password = this.password
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, current_password, (err, isMatch) => {
-        if (err) 
-          return reject(err)
-        if (!isMatch) 
-          return reject(new Error('Password error'))
+        if (err) { return reject(err) }
+        if (!isMatch) { return reject(new Error('Password error')) }
         resolve()
       })
     })
@@ -81,7 +78,7 @@ module.exports = function (sequelize) {
     let permissions = []
     for (const role of this.Roles) {
       for (const permission of role.Permissions) {
-        permissions.push(permission.name)
+        permissions.push({ name: permission.name, module: permission.module })
       }
     }
     return permissions
