@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 const responser = require('./utils/responser')
 
 const env = require('dotenv').config()
-const config = require('./config')[process.env.NODE_ENV]
+const config = require('./config/config')[process.env.NODE_ENV]
 const port = config.port
 
 app.use(cors())

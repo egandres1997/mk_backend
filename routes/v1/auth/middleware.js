@@ -3,7 +3,7 @@ const moment = require('moment')
 const errorGetter = require('../../../utils/errors')
 const responser = require('../../../utils/responser')
 const env = require('dotenv').config()
-const config = require('../../../config')
+const config = require('../../../config/config')
 
 const checkIsLogged = function () {
   return function (req, res, next) {

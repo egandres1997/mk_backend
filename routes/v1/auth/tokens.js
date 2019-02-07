@@ -7,7 +7,7 @@ const responser = require('../../../utils/responser')
 const bcrypt = require('bcrypt')
 
 const env = require('dotenv').config()
-const config = require('../../../config')
+const config = require('../../../config/config')
 
 const {
   check,
