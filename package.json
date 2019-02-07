@@ -6,6 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "dev:pm2": "rm -rf ./logs && cross-env NODE_ENV=development pm2 start ./config/pm2-process.json",
     "lint": "standard"
   },
   "repository": {

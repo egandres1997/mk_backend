@@ -1,7 +1,7 @@
 'use strict'
 
 const env = require('dotenv').config()
-const config = require('../../config')
+const config = require('../../config/config')
 
 const fs = require('fs')
 const path = require('path')

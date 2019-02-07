@@ -1,0 +1,12 @@
+{
+	"apps": [{
+		"name": "mk_backend",
+		"script": "server.js",
+		"watch": true,
+		"log_file": "logs/logs.json",
+		"out_file": "logs/out.log",
+		"error_file": "logs/error.log",
+		"log_type": "json",
+		"ignore_watch": ["node_modules", "logs"]
+	}]	
+}
