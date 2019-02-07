@@ -1,8 +1,16 @@
 {
 	"apps": [{
-		"name": "mk_backend",
+		"name": "mk_backend_dev",
 		"script": "server.js",
 		"watch": true,
+		"error_file": "logs/error.json",
+		"log_type": "json",
+		"ignore_watch": ["node_modules", "logs"]
+	},
+	{
+		"name": "mk_backend_prod",
+		"script": "server.js",
+		"watch": false,
 		"error_file": "logs/error.json",
 		"log_type": "json",
 		"ignore_watch": ["node_modules", "logs"]
