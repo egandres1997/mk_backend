@@ -9,16 +9,8 @@
     "dev:pm2": "rm -rf ./logs && cross-env NODE_ENV=development pm2 start ./config/pm2-process.json",
     "lint": "standard"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/egandres1997/AD_HOUSE.git"
-  },
   "author": "Enzo García",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/egandres1997/AD_HOUSE/issues"
-  },
-  "homepage": "https://github.com/egandres1997/AD_HOUSE#readme",
   "dependencies": {
     "bcrypt": "^3.0.2",
     "body-parser": "1.8.1",
