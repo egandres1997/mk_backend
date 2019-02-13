@@ -1,0 +1,12 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "tr_dev",
+    "host": "localhost",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "appPort": 3000,
+    "secret": "mySecret"
+  }
+}

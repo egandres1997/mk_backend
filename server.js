@@ -11,7 +11,7 @@ const responser = require('./utils/responser')
 
 const env = require('dotenv').config()
 const config = require('./config/config')[process.env.NODE_ENV]
-const port = config.port
+const port = config.appPort
 
 app.use(cors())
 

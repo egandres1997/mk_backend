@@ -1,4 +1,4 @@
-const models = require('../models/sequelize')
+const models = require('../models')
 const articleService = require('../services/articleService')(models)
 const responser = require('../utils/responser')
 

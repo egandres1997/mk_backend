@@ -8,7 +8,9 @@
     "dev": "cross-env NODE_ENV=development nodemon server.js",
     "dev:pm2": "rm -rf ./logs && cross-env NODE_ENV=development pm2 start ./config/pm2-process.json --only mk_backend_dev",
     "start:pm2": "rm -rf ./logs && NODE_ENV=production pm2 start ./config/pm2-process.json --only mk_backend_prod",
-    "lint": "standard"
+    "lint": "standard",
+    "migrate": "cross-env NODE_ENV=development && sequelize db:migrate",
+    "reset_dev": "cross-env NODE_ENV=development && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all"
   },
   "author": "Enzo García",
   "license": "MIT",
@@ -25,7 +27,8 @@
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
-    "sequelize": "^4.13.8"
+    "sequelize": "^4.13.8",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",

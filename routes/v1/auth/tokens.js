@@ -1,5 +1,5 @@
 const express = require('express')
-const models = require('../../../models/sequelize')
+const models = require('../../../models')
 const router = express.Router()
 const jwt = require('jwt-simple')
 const moment = require('moment')
@@ -7,7 +7,7 @@ const responser = require('../../../utils/responser')
 const bcrypt = require('bcrypt')
 
 const env = require('dotenv').config()
-const config = require('../../../config/config')
+const config = require('../../../config/config.json')
 
 const {
   check,
@@ -63,7 +63,7 @@ router.post('/', [
   }).then(oneUser => {
     if (oneUser === null) {
       return res.status(responser.codes.UNPROCESSABLE_ENTITY).json(
-        responser.createResponse(responser.codes.UNPROCESSABLE_ENTITY, 'Invalid email or password', null)
+        responser.createResponse(responser.codes.UNPROCESSABLE_ENTITY, 'Email o Password inválidos.', null)
       )
     }
     let permissions = oneUser.getPermissions()
@@ -82,7 +82,7 @@ router.post('/', [
       }))
     }).catch(function () {
       return res.status(responser.codes.UNPROCESSABLE_ENTITY).json(
-        responser.createResponse(responser.codes.UNPROCESSABLE_ENTITY, 'Invalid email or password', null)
+        responser.createResponse(responser.codes.UNPROCESSABLE_ENTITY, 'Email o Password inválidos.', null)
       )
     })
   })
