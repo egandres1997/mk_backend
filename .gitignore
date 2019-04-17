@@ -1,2 +1,4 @@
 /node_modules
 /logs
+/config/process.json
+/config/config.json

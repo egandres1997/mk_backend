@@ -8,10 +8,7 @@ const cors = require('cors')
 const apiVersionV1 = require('./routes/v1/api_v1')
 const bodyParser = require('body-parser')
 const responser = require('./utils/responser')
-
-const env = require('dotenv').config()
-const config = require('./config/config')[process.env.NODE_ENV]
-const port = config.port
+const port = process.env.PORT
 
 app.use(cors())
 

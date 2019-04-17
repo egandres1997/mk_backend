@@ -1,0 +1,1 @@
+npm install && pm2-runtime config/process.json

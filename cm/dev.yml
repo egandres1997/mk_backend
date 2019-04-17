@@ -1,0 +1,20 @@
+version: '3.5'
+services:
+  mysql-mounted:
+    image: mysql:5.5
+    container_name: mysql-mounted
+    ports:
+      - "3310:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    volumes:
+      - /var/db/mk_api_dev/mysql:/var/lib/mysql
+  MkApiPM:
+    image: mk-api-pm
+    container_name: MkApiPM
+    ports:
+      - "5050:3000"
+    volumes:
+      - ../:/usr/src
+    links:
+     - mysql-mounted:database

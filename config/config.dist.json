@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "tr_database",
+    "host": "database",
+    "dialect": "mysql",
+    "secret": "mySecret"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "tr_database_test",
+    "host": "database",
+    "dialect": "mysql",
+    "secret": "mySecret"
+  },
+  "production": {
+    "username": "root",
+    "password": "root",
+    "database": "tr_database_prod",
+    "host": "database",
+    "dialect": "mysql",
+    "secret": "mySecret"
+  }
+}
