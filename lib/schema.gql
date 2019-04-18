@@ -1,0 +1,16 @@
+"Valida los tipos de nivel"
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  "Devuelve todos los usuarios"
+  getUsers: [User]
+}
+
+type Mutation {
+  "Crea un usuario"
+  userAdd(name: String!): User
+}
