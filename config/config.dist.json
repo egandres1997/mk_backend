@@ -5,7 +5,8 @@
     "database": "tr_database",
     "host": "database",
     "dialect": "mysql",
-    "secret": "mySecret"
+    "secret": "mySecret",
+    "operatorsAliases": false
   },
   "test": {
     "username": "root",
@@ -13,7 +14,8 @@
     "database": "tr_database_test",
     "host": "database",
     "dialect": "mysql",
-    "secret": "mySecret"
+    "secret": "mySecret",
+    "operatorsAliases": false
   },
   "production": {
     "username": "root",
@@ -21,6 +23,7 @@
     "database": "tr_database_prod",
     "host": "database",
     "dialect": "mysql",
-    "secret": "mySecret"
+    "secret": "mySecret",
+    "operatorsAliases": false
   }
 }
