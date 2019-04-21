@@ -37,7 +37,7 @@ module.exports = function (sequelize) {
     })
 
   User.associate = function (models) {
-
+    
   }
 
   User.getMsgNotExists = function () {

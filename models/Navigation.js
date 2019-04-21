@@ -10,7 +10,7 @@ module.exports = function (sequelize) {
     },
     parent_id: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     title: {
       type: Sequelize.STRING,

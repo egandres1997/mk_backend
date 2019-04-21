@@ -8,12 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      voucher_type_id: {
-        type: Sequelize.INTEGER,
+      voucher_type_code: {
+        type: Sequelize.STRING(3),
         allowNull: false,
         references: {
           model: 'voucher_type',
-          key: 'id'
+          key: 'code'
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
@@ -71,10 +71,12 @@ module.exports = {
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updated_at: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP'),
       }
     })
     .catch((err) => console.log(err))
