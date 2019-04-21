@@ -19,7 +19,7 @@ module.exports = function (sequelize) {
     })
 
   ArticleCategoryRelation.associate = function (models) {
-    
+
   }
 
   ArticleCategoryRelation.getMsgNotExists = function () {

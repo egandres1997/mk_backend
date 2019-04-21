@@ -6,7 +6,28 @@ module.exports = function (sequelize) {
   let Article = sequelize.define('Article', {
     code: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
+      isUnique: true,
+      validate: {
+        isUnique: function (value, next) {
+          var self = this
+          Aritcle
+            .find({
+              where: {
+                code: value
+              }
+            })
+            .then(function (article) {
+              if (article && self.id !== article.id) {
+                return next('Code already in use')
+              }
+              return next()
+            })
+            .catch(function (err) {
+              return next(err)
+            })
+        }
+      }
     },
     name: {
       type: Sequelize.STRING,
@@ -44,7 +65,7 @@ module.exports = function (sequelize) {
     })
 
   Article.associate = function (models) {
-    
+
   }
 
   Article.getMsgNotExists = function () {

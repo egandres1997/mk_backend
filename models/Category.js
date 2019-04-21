@@ -6,7 +6,28 @@ module.exports = function (sequelize) {
   let Category = sequelize.define('Category', {
     code: {
       type: Sequelize.STRING(3),
-      allowNull: false
+      allowNull: false,
+      isUnique: true,
+      validate: {
+        isUnique: function (value, next) {
+          var self = this
+          Category
+            .find({
+              where: {
+                code: value
+              }
+            })
+            .then(function (category) {
+              if (category && self.id !== category.id) {
+                return next('Code already in use')
+              }
+              return next()
+            })
+            .catch(function (err) {
+              return next(err)
+            })
+        }
+      }
     },
     name: {
       type: Sequelize.STRING,
@@ -33,7 +54,7 @@ module.exports = function (sequelize) {
     })
 
   Category.associate = function (models) {
-    
+ 
   }
 
   Category.getMsgNotExists = function () {

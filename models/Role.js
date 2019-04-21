@@ -40,6 +40,8 @@ module.exports = function (sequelize) {
     })
 
   Role.associate = function (models) {
+    Role.hasMany(models.UserHasRole)
+    Role.hasMany(models.RoleHasModule)
     Role.belongsToMany(models.User, {
       as: 'Users',
       through: {

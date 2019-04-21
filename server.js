@@ -19,23 +19,29 @@ app.use('/v0', apiV0)
 
 app.get('/models', async function (req, res) {
   const models = require('./models')
-  const model = await models.User.findByPk(1, {
-    include: [
-      {
-        model: models.Role,
-        as: 'Roles',
-        include: [{
-          model: models.Module,
-          as: 'Modules',
-          include: [{
-            model: models.Navigation,
-            as: 'Navigations'
-          }]
-        }]
-      }
-    ]
+  // const model = await models.User.findByPk(1, {
+  //   include: [
+  //     {
+  //       model: models.Role,
+  //       as: 'Roles',
+  //       include: [{
+  //         model: models.Module,
+  //         as: 'Modules',
+  //         include: [{
+  //           model: models.Navigation,
+  //           as: 'Navigations'
+  //         }]
+  //       }]
+  //     }
+  //   ]
+  // })
+  const model = await models.Article.findAll({
+    include: [{
+      model: models.Category,
+      as: 'Categories'
+    }]
   })
-  res.send(model.toJSON())
+  res.send(model)
 })
 
 app.use(function (err, req, res) {
