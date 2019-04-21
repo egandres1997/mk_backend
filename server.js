@@ -15,7 +15,24 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use('/v0', apiV0);
+app.use('/v0', apiV0)
+
+app.get('/models', async function (req, res) {
+  const models = require('./models')
+  const model = await models.User.findByPk(1, {
+    include: [
+      {
+        model: models.Role,
+        as: 'Roles',
+        include: [{
+          model: models.Module,
+          as: 'Modules'
+        }]
+      }
+    ]
+  })
+  res.send(model.toJSON())
+})
 
 app.use(function (err, req, res) {
   res.locals.message = err.message

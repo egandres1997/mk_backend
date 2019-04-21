@@ -28,7 +28,17 @@ module.exports = function (sequelize) {
     })
 
   Module.associate = function (models) {
-    
+    Module.belongsToMany(models.Role, {
+      as: 'Roles',
+      through: {
+        model: models.RoleHasModule
+      },
+      foreignKey: {
+        name: 'module_id',
+        allowNull: false,
+        unique: true
+      }
+    })
   }
 
   Module.getMsgNotExists = function () {

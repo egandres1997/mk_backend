@@ -15,6 +15,32 @@ module.exports = function (sequelize) {
     email: {
       type: Sequelize.STRING,
       allowNull: false,
+      isUnique: true,
+      validate: {
+        isEmail: true,
+        notEmpty: true,
+        len: [
+          1, 255
+        ],
+        isUnique: function (value, next) {
+          var self = this
+          User
+            .find({
+              where: {
+                email: value
+              }
+            })
+            .then(function (user) {
+              if (user && self.id !== user.id) {
+                return next('Email already in use')
+              }
+              return next()
+            })
+            .catch(function (err) {
+              return next(err)
+            })
+        }
+      }
     },
     password: {
       type: Sequelize.STRING,
@@ -37,7 +63,18 @@ module.exports = function (sequelize) {
     })
 
   User.associate = function (models) {
-    
+    User.hasMany(models.UserHasRole)
+    User.belongsToMany(models.Role, {
+      as: 'Roles',
+      through: {
+        model: models.UserHasRole
+      },
+      foreignKey: {
+        name: 'user_id',
+        allowNull: false,
+        unique: true
+      }
+    })
   }
 
   User.getMsgNotExists = function () {
