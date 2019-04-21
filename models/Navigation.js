@@ -41,7 +41,7 @@ module.exports = function (sequelize) {
     })
 
   Navigation.associate = function (models) {
-    
+    Navigation.belongsTo(models.Module)
   }
 
   Navigation.getMsgNotExists = function () {

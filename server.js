@@ -26,7 +26,11 @@ app.get('/models', async function (req, res) {
         as: 'Roles',
         include: [{
           model: models.Module,
-          as: 'Modules'
+          as: 'Modules',
+          include: [{
+            model: models.Navigation,
+            as: 'Navigations'
+          }]
         }]
       }
     ]

@@ -39,6 +39,9 @@ module.exports = function (sequelize) {
         unique: true
       }
     })
+    Module.hasMany(models.Navigation, {
+      as: 'Navigations'
+    })
   }
 
   Module.getMsgNotExists = function () {
