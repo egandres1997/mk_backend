@@ -1,0 +1,35 @@
+type User  {
+  id: ID!
+  name: String!
+  surname: String!
+  email: String!
+  password: String!
+  status: Boolean!
+  failed_attempts: Int!
+  Roles: [Role!]
+}
+
+type Role {
+  id: ID!
+  name: String!
+  description: String!
+  Modules: [Module!]
+}
+
+type Module {
+  id: ID!
+  code: String!
+  name: String!
+  description: String!
+  status: Boolean!
+}
+
+type Query {
+  "Return all users"
+  users: [User!]!
+}
+
+type Mutation {
+  "Create a user"
+  userAdd(name: String!): User
+}
