@@ -25,7 +25,15 @@ const typeDefs = readFileSync(
   'utf-8'
 )
 
-const apollo = new ApolloServer({ typeDefs, resolvers })
+const apollo = new ApolloServer({ 
+  typeDefs, 
+  resolvers,
+  context: ({ req }) => {
+    const token = req.header('authorization')
+    return true
+  }  
+})
+
 apollo.applyMiddleware({ app })
 
 app.use(function (err, req, res, next) {

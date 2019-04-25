@@ -1,7 +1,9 @@
 'use strict'
 
-module.exports = {
-  userAdd(_, { input }) {
-    
+module.exports = (services) => {
+  this.userAdd = (_, { input }) => {
+
   }
+
+  return this
 }
