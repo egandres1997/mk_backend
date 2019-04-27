@@ -12,8 +12,19 @@ type User {
   updated_at: Date
 }
 
+input UserFilter {
+  id: ID
+  email: String
+  status: Boolean
+}
+
+input PaginationOptions {
+  page: Int!
+  quantity: Int
+}
+
 type Query {
-  getAllUsers: [User]!
+  getUsers(filters: UserFilter, options: PaginationOptions): [User!]!
 }
 
 type Mutation {

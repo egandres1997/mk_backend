@@ -1,6 +1,9 @@
 'use strict'
 
 const Sequelize = require('sequelize')
+const bcrypt = require('bcrypt')
+const jwt = require('jwt-simple')
+const moment = require('moment')
 
 module.exports = function (sequelize) {
   let User = sequelize.define('User', {
@@ -79,6 +82,30 @@ module.exports = function (sequelize) {
 
   User.getMsgNotExists = function () {
     return 'Invalid User'
+  }
+
+  User.prototype.verifyPassword = function (password) {
+    return new Promise((resolve) => {
+      bcrypt.compare(password, this.password, (err, isMatch) => {
+        if (err)
+          return resolve(false)
+        if (!isMatch)
+          return resolve(false)
+        resolve(true)
+      })
+    })
+  }
+
+  User.prototype.createToken = function () {
+    return jwt.encode({
+      id: this.id,
+      name: this.name,
+      surname: this.surname,
+      email: this.email,
+      roles: this.Roles,
+      iat: moment().unix(),
+      exp: moment().add(30, 'days').unix()
+    }, process.env.SECRET, 'HS256')
   }
 
   return User

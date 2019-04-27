@@ -8,6 +8,8 @@ const { readFileSync } = require('fs')
 const { join } = require('path')
 const resolvers = require('./app/Resolvers')
 const port = process.env.PORT
+const { authenticate } = require('./app/Controllers/AuthenticationController')
+const { withError, authMiddleware } = require('./utils/functions')
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
@@ -28,11 +30,10 @@ const typeDefs = readFileSync(
 const apollo = new ApolloServer({ 
   typeDefs, 
   resolvers,
-  context: ({ req }) => {
-    const token = req.header('authorization')
-    return true
-  }  
+  context: ({ req }) => authMiddleware(req) 
 })
+
+app.post('/token', withError(authenticate))
 
 apollo.applyMiddleware({ app })
 

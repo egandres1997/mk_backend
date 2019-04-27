@@ -1,8 +1,8 @@
 'use strict'
 
 module.exports = (services) => {
-  this.getAllUsers = () => {
-    return services.userService.findAll()
+  this.getUsers = (_, { filters, options }) => {
+    return services.UserService.findAll(filters, options)
   }
 
   return this
