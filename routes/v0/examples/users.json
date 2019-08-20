@@ -1,0 +1,91 @@
+{
+    "routes": [
+        {
+            "url": "/",
+            "http": [
+                {
+                    "verb": "POST",
+                    "description": "This route is used for created a new users and assign multiple roles",
+                    "example": {
+                        "request": {
+                            "name": "Pedro",
+                            "surname": "Pérez",
+                            "email": "pperez@gmail.com",
+                            "password": "secret",
+                            "Roles": [1,2]
+                        },
+                        "response": {
+                            "code": 200,
+                            "status": "success",
+                            "message": "",
+                            "data": {
+                                "code": 200,
+                                "status": "success",
+                                "message": "",
+                                "data": {
+                                    "id": 29,
+                                    "name": "Pedro",
+                                    "surname": "Pérez",
+                                    "email": "pperez@gmail.com",
+                                    "status": true,
+                                    "created_at": "2019-08-17T23:34:07.000Z",
+                                    "Roles": [
+                                        {
+                                            "id": 1,
+                                            "name": "ADMIN_ROLE",
+                                            "description": "Site Administration Role",
+                                            "created_at": "2019-08-17T20:26:18.000Z"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "VENDOR_ROLE",
+                                            "description": "Site Vendor Role",
+                                            "created_at": "2019-08-17T20:26:19.000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "verb": "PATCH",
+                    "description": "This route is used for update any field of the user and change or assign the roles",
+                    "example": {
+                        "params": {
+                            "id": 29
+                        },
+                        "request": {
+                            "name": "Pedro",
+                            "surname": "Pérez",
+                            "email": "pperez@gmail.com",
+                            "password": "secret",
+                            "Roles": [1]
+                        },
+                        "response": {
+                            "code": 200,
+                            "status": "success",
+                            "message": "",
+                            "data": {
+                                "id": 29,
+                                "name": "Pedro",
+                                "surname": "Pérez",
+                                "email": "pperez@gmail.com",
+                                "status": true,
+                                "created_at": "2019-08-17T23:34:07.000Z",
+                                "Roles": [
+                                    {
+                                        "id": 1,
+                                        "name": "ADMIN_ROLE",
+                                        "description": "Site Administration Role",
+                                        "created_at": "2019-08-17T20:26:18.000Z"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

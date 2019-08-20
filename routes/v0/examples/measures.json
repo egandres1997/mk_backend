@@ -1,0 +1,56 @@
+{
+    "routes": [
+        {
+            "url": "/",
+            "http": [
+                {
+                    "verb": "POST",
+                    "description": "This route is used for created a new measures",
+                    "example": {
+                        "name": "Pack de 6 unidades",
+                        "description": "Pack de 6 unidades",
+                        "quantity": 6
+                    },
+                    "response": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "",
+                        "data": {
+                            "id": 31,
+                            "name": "Pack de 6 unidades",
+                            "description": "Pack de 6 unidades",
+                            "quantity": 6,
+                            "created_at": "2019-08-18T02:24:42.011Z"
+                        }
+                    }
+                },
+                {
+                    "verb": "PATCH",
+                    "description": "This route is used for update any field of the category",
+                    "example": {
+                        "params": {
+                            "id": 31
+                        },
+                        "request": {
+                            "name": "Pack de 8 unidades",
+                            "description": "Pack de 8 unidades",
+                            "quantity": 8
+                        },
+                        "response": {
+                            "code": 200,
+                            "status": "success",
+                            "message": "",
+                            "data": {
+                                "id": 31,
+                                "name": "Pack de 8 unidades",
+                                "description": "Pack de 8 unidades",
+                                "quantity": 8,
+                                "created_at": "2019-08-18T02:24:42.000Z"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

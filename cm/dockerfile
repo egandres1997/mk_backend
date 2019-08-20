@@ -1,5 +1,5 @@
 # latest official node image
-FROM node:10.15.3
+FROM node:8.9.0
 
 MAINTAINER Enzo García <e.andres1997@gmail.com>
 

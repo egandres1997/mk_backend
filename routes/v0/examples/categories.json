@@ -1,0 +1,67 @@
+{
+    "routes": [
+        {
+            "url": "/",
+            "http": [
+                {
+                    "verb": "POST",
+                    "description": "This route is used for created a new categories",
+                    "example": {
+                        "code": "QUE",
+                        "name": "Quesos",
+                        "description": "Quesos",
+                        "parent_code": null
+                    },
+                    "response": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "",
+                        "data": {
+                            "id": 30,
+                            "code": "QUE",
+                            "name": "Quesos",
+                            "description": "Quesos",
+                            "parent_code": null,
+                            "status": true,
+                            "created_at": "2019-08-18T01:59:53.740Z"
+                        }
+                    }
+                },
+                {
+                    "verb": "PATCH",
+                    "description": "This route is used for update any field of the category",
+                    "example": {
+                        "params": {
+                            "id": 30
+                        },
+                        "request": {
+                            "name": "Pedro",
+                            "surname": "Pérez",
+                            "email": "pperez@gmail.com",
+                            "password": "secret",
+                            "Roles": [
+                                {
+                                    "id": 1
+                                }
+                            ]
+                        },
+                        "response": {
+                            "code": 200,
+                            "status": "success",
+                            "message": "",
+                            "data": {
+                                "id": 30,
+                                "code": "QUE",
+                                "name": "Quesos 2",
+                                "description": "Quesos",
+                                "parent_code": "GOM",
+                                "status": true,
+                                "created_at": "2019-08-18T01:59:53.000Z"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

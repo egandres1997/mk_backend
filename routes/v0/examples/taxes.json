@@ -1,0 +1,56 @@
+{
+    "routes": [
+        {
+            "url": "/",
+            "http": [
+                {
+                    "verb": "POST",
+                    "description": "This route is used for created a new taxes",
+                    "example": {
+                        "code": "CAF",
+                        "name": "Impuesto interno al café",
+                        "percentage": 2.21
+                    },
+                    "response": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "",
+                        "data": {
+                            "id": 3,
+                            "code": "CAF",
+                            "name": "Impuesto interno al café",
+                            "percentage": 2.21,
+                            "created_at": "2019-08-18T02:45:33.494Z"
+                        }
+                    }
+                },
+                {
+                    "verb": "PATCH",
+                    "description": "This route is used for update any field of the tax",
+                    "example": {
+                        "params": {
+                            "id": 3
+                        },
+                        "request": {
+                            "code": "CAF",
+                            "name": "Impuesto interno al café",
+                            "percentage": 3.50
+                        },
+                        "response": {
+                            "code": 200,
+                            "status": "success",
+                            "message": "",
+                            "data": {
+                                "id": 3,
+                                "code": "CAF",
+                                "name": "Impuesto interno al café",
+                                "percentage": 3.5,
+                                "created_at": "2019-08-18T02:45:33.000Z"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
