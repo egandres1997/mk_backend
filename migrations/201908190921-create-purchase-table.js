@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('purchase_header', {
+        return queryInterface.createTable('purchase', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -28,12 +28,22 @@ module.exports = {
                 onDelete: 'CASCADE',
                 onUpdate: 'CASCADE'
             },
+            invoice_id: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'invoice',
+                    key: 'id'
+                },
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
+            },
             created_at: Sequelize.DATE,
             updated_at: Sequelize.DATE
         })
             .catch((err) => console.log(err))
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('purchase_header');
+        return queryInterface.dropTable('purchase');
     }
 };

@@ -3,7 +3,7 @@
 const purchaseIncludes = models => {
 
     const basic = () => ([{
-        model: models.PurchaseDetail
+        model: models.Invoice
     }, {
         model: models.StkMovementHeader
     }, {

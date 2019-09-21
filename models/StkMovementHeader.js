@@ -27,7 +27,7 @@ module.exports = function (sequelize) {
         })
 
     StkMovementHeader.associate = function (models) {
-        StkMovementHeader.hasMany(models.PurchaseHeader)
+        StkMovementHeader.hasMany(models.Purchase)
     }
 
     StkMovementHeader.getMsgNotExists = function () {

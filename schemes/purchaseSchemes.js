@@ -9,7 +9,7 @@ const purchaseSchemes = schemes => {
         { key: 'created_at' },
         { key: 'Supplier', scheme: schemes.supplier.basic },
         { key: 'StkMovementHeader', scheme: schemes.stkMovementHeader.basic },
-        { key: 'PurchaseDetail', scheme: schemes.purchaseDetail.basic },
+        { key: 'Invoice', scheme: schemes.invoice.basic },
     ], instance)
 
     return {
